@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Interaktif Analisis Unsur Intrinsik Cerpen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-full flex flex-col antialiased">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="showScreen('home')">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C20.832 18.477 19.247 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg text-slate-900 leading-tight">Analisis Cerpen</h1>
+                        <p class="text-xs text-slate-500 font-medium">Pembelajaran Unsur Intrinsik Interaktif</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button onclick="openMaterialModal()" class="inline-flex items-center space-x-2 text-sm font-semibold text-brand-600 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-xl transition duration-150">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="hidden sm:inline">Rangkuman Materi</span>
+                        <span class="sm:hidden">Materi</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col">
+        
+        <!-- HOME SCREEN -->
+        <div id="screen-home" class="space-y-8 my-auto py-6">
+            <div class="text-center max-w-2xl mx-auto space-y-4">
+                <span class="px-3 py-1 text-xs font-bold tracking-wide uppercase bg-indigo-100 text-brand-700 rounded-full inline-block">Media Pembelajaran Bahasa Indonesia</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Kuasai Analisis Unsur Intrinsik Cerita Pendek</h2>
+                <p class="text-slate-600 text-base sm:text-lg">Uji pemahamanmu mengenai Penokohan, Latar, Alur, Sudut Pandang, Tema, dan Amanat melalui latihan soal analisis berbasis kutipan fiksi.</p>
+            </div>
+
+            <!-- Quiz Category Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                
+                <!-- Mode 1: Analisis Cerpen -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="text-xl font-bold text-slate-900">Analisis Kutipan Cerita</h3>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-md">20 Soal</span>
+                            </div>
+                            <p class="text-slate-600 text-sm mt-2">Setiap soal diawali kutipan cerita pendek. Kamu diminta menganalisis watak, latar, jenis alur, sudut pandang, tema, dan amanat.</p>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-medium">Tingkat: Menengah - Lanjut</span>
+                        <button onclick="startQuiz('analisis')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-brand-500/20 transition inline-flex items-center space-x-2">
+                            <span>Mulai Latihan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mode 2: Konsep Dasar -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="text-xl font-bold text-slate-900">Konsep Unsur Intrinsik</h3>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-0.5 rounded-md">20 Soal</span>
+                            </div>
+                            <p class="text-slate-600 text-sm mt-2">Uji pemahaman dasar mengenai definisi, istilah, perbedaan teknik penokohan, tahapan alur, dan jenis majas/sudut pandang.</p>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-medium">Tingkat: Dasar</span>
+                        <button onclick="startQuiz('konsep')" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-purple-500/20 transition inline-flex items-center space-x-2">
+                            <span>Mulai Latihan</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Quick Stats/Features Banner -->
+            <div class="max-w-4xl mx-auto bg-slate-900 rounded-2xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-yellow-400 shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-base">Fitur Pembahasan Langsung</h4>
+                        <p class="text-slate-400 text-xs sm:text-sm">Dilengkapi analisis jawaban di setiap nomor untuk membantu pemahaman mendalam.</p>
+                    </div>
+                </div>
+                <button onclick="openMaterialModal()" class="w-full sm:w-auto text-center px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs sm:text-sm font-semibold text-slate-200 transition">Pelajari Materi Dahulu</button>
+            </div>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="screen-quiz" class="hidden flex-1 flex flex-col max-w-4xl mx-auto w-full">
+            
+            <!-- Quiz Header Status Bar -->
+            <div class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-sm mb-6 space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <button onclick="confirmExitQuiz()" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                        <div>
+                            <span id="quiz-badge" class="text-xs font-bold px-2.5 py-1 rounded-md bg-brand-50 text-brand-600 uppercase tracking-wide">Mode Analisis</span>
+                            <h3 id="quiz-title-header" class="text-sm sm:text-base font-bold text-slate-800 mt-1">Soal 1 dari 20</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="text-right">
+                            <div class="text-xs text-slate-400 font-medium">Skor Sementa</div>
+                            <div id="current-score" class="text-base font-extrabold text-brand-600">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                    <div id="quiz-progress-bar" class="bg-brand-600 h-full w-0 transition-all duration-300 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6 flex-1 flex flex-col justify-between">
+                
+                <div class="space-y-6">
+                    <!-- Story Context Box (Shown if question has passage) -->
+                    <div id="story-container" class="bg-slate-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 text-slate-700 text-sm sm:text-base italic leading-relaxed shadow-inner">
+                        <p id="story-passage">"Memuat cerita..."</p>
+                    </div>
+
+                    <!-- Question Prompt -->
+                    <div>
+                        <h4 id="question-text" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                            Loading pertanyaan...
+                        </h4>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="options-list" class="space-y-3">
+                        <!-- Rendered by JS -->
+                    </div>
+
+                    <!-- Explanation Card (Appears after answer selection) -->
+                    <div id="explanation-box" class="hidden rounded-xl p-4 sm:p-5 border text-sm leading-relaxed transition-all duration-200">
+                        <div class="flex items-center space-x-2 font-bold mb-1" id="explanation-title">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>Pembahasan</span>
+                        </div>
+                        <p id="explanation-text" class="text-slate-700">Penjelasan jawaban akan muncul di sini.</p>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation inside Quiz Card -->
+                <div class="pt-6 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <span id="question-category-tag" class="text-xs font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-full">Unsur: Tokoh</span>
+                    <button id="btn-next-question" onclick="nextQuestion()" disabled class="bg-brand-600 hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold px-6 py-2.5 rounded-xl shadow-md shadow-brand-500/20 transition flex items-center space-x-2">
+                        <span>Lanjut Soal</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="screen-result" class="hidden max-w-4xl mx-auto w-full space-y-8 my-auto py-6">
+            
+            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl text-center space-y-6">
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Hasil Latihan Kamu</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Selesai! Nilai Latihan</h2>
+                    <p id="result-badge-text" class="text-slate-600 text-sm mt-1">Berikut rincian performa analisis unsur intrinsikmu.</p>
+                </div>
+
+                <div class="py-4 bg-slate-50 rounded-2xl max-w-sm mx-auto border border-slate-100">
+                    <div class="text-5xl font-black text-brand-600 tracking-tight" id="final-score-display">0</div>
+                    <div class="text-xs font-medium text-slate-500 mt-1">Skor Total (Skala 100)</div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-lg mx-auto text-left">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-400 font-medium">Jawaban Benar</div>
+                        <div id="stat-correct" class="text-xl font-bold text-emerald-600">0</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-400 font-medium">Jawaban Salah</div>
+                        <div id="stat-incorrect" class="text-xl font-bold text-rose-600">0</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 col-span-2 sm:col-span-1">
+                        <div class="text-xs text-slate-400 font-medium">Akurasi</div>
+                        <div id="stat-accuracy" class="text-xl font-bold text-brand-600">0%</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button onclick="toggleReviewMode()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        <span>Tinjau Semua Jawaban</span>
+                    </button>
+                    <button onclick="showScreen('home')" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        <span>Coba Mode Lain</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Answer Review List Container -->
+            <div id="review-container" class="hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                    <h3 class="text-xl font-bold text-slate-900">Tinjauan Soal & Pembahasan</h3>
+                    <span class="text-xs text-slate-500">Evaluasi Pembelajaran</span>
+                </div>
+                <div id="review-list" class="space-y-6">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MATERIAL SUMMARY MODAL -->
+    <div id="modal-material" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C20.832 18.477 19.247 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Rangkuman Unsur Intrinsik Cerpen</h3>
+                </div>
+                <button onclick="closeMaterialModal()" class="text-slate-400 hover:text-slate-600 p-2 rounded-lg hover:bg-slate-200 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-6 custom-scrollbar text-sm leading-relaxed">
+                <!-- Material Section 1 -->
+                <div class="border-b border-slate-100 pb-4">
+                    <h4 class="font-bold text-base text-brand-600 mb-2">1. Tema</h4>
+                    <p class="text-slate-600">Gagasan utama atau ide dasar yang menjadi landasan seluruh isi cerita (contoh: kejujuran, perjuangan, persahabatan).</p>
+                </div>
+
+                <!-- Material Section 2 -->
+                <div class="border-b border-slate-100 pb-4">
+                    <h4 class="font-bold text-base text-brand-600 mb-2">2. Tokoh & Penokohan</h4>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600">
+                        <strong class="text-slate-800">Peran Tokoh:</strong>
+                        <li><strong>Protagonis:</strong> Tokoh utama yang berwatak baik.</li>
+                        <li><strong>Antagonis:</strong> Tokoh penentang/penyebab konflik.</li>
+                        <li><strong>Tritagonis:</strong> Tokoh penengah yang bersifat netral/memberi solusi.</li>
+                    </ul>
+                    <div class="mt-2 text-slate-600">
+                        <strong class="text-slate-800">Teknik Penokohan:</strong>
+                        <p>• <em>Analitis (Langsung):</em> Pengarang menyebutkan watak secara eksplisit.</p>
+                        <p>• <em>Dramatis (Tidakk Langsung):</em> Watak digambarkan lewat dialog, tindakan fisik, pikiran, atau tanggapan tokoh lain.</p>
+                    </div>
+                </div>
+
+                <!-- Material Section 3 -->
+                <div class="border-b border-slate-100 pb-4">
+                    <h4 class="font-bold text-base text-brand-600 mb-2">3. Latar (Setting)</h4>
+                    <p class="text-slate-600 mb-1">• <strong>Tempat:</strong> Dimana peristiwa terjadi (misal: stasiun tua, balai desa).</p>
+                    <p class="text-slate-600 mb-1">• <strong>Waktu:</strong> Kapan peristiwa terjadi (misal: pukul 02.00 dini hari, sore hari).</p>
+                    <p class="text-slate-600 mb-1">• <strong>Suasana:</strong> Perasaan/kondisi dalam cerita (misal: mencekam, haru, tegang).</p>
+                    <p class="text-slate-600">• <strong>Sosial/Budaya:</strong> Adat istiadat, norma, atau status sosial tokoh.</p>
+                </div>
+
+                <!-- Material Section 4 -->
+                <div class="border-b border-slate-100 pb-4">
+                    <h4 class="font-bold text-base text-brand-600 mb-2">4. Alur (Plot) & Tahapan</h4>
+                    <p class="text-slate-600 mb-2">Jenis Alur: <strong>Alur Maju</strong> (runtut), <strong>Alur Mundur</strong> (kilas balik/flashback), dan <strong>Alur Campuran</strong>.</p>
+                    <p class="text-slate-600 font-semibold">Tahapan Alur:</p>
+                    <ol class="list-decimal list-inside text-slate-600 space-y-1">
+                        <li>Orientasi (Pengenalan)</li>
+                        <li>Kemunculan Konflik</li>
+                        <li>Klimaks (Puncak Ketegangan)</li>
+                        <li>Antiklimaks/Peleraian</li>
+                        <li>Resolusi (Penyelesaian)</li>
+                    </ol>
+                </div>
+
+                <!-- Material Section 5 -->
+                <div class="border-b border-slate-100 pb-4">
+                    <h4 class="font-bold text-base text-brand-600 mb-2">5. Sudut Pandang (Point of View)</h4>
+                    <p class="text-slate-600 mb-1">• <strong>Orang Pertama Tokoh Utama:</strong> Menggunakan kata "Aku/Saya" dan menceritakan dirinya sendiri.</p>
+                    <p class="text-slate-600 mb-1">• <strong>Orang Pertama Tokoh Sampingan:</strong> "Aku" menceritakan tokoh lain.</p>
+                    <p class="text-slate-600">• <strong>Orang Ketiga (Serbatahu/Pengamat):</strong> Menggunakan "Dia/Ia/Nama Tokoh".</p>
+                </div>
+
+                <!-- Material Section 6 -->
+                <div>
+                    <h4 class="font-bold text-base text-brand-600 mb-2">6. Amanat</h4>
+                    <p class="text-slate-600">Pesan moral yang ingin disampaikan pengarang kepada pembaca (bisa bersifat <em>tersurat</em>/tertulis jelas atau <em>tersirat</em>/disimpulkan sendiri).</p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-slate-50 border-t border-slate-100 text-right">
+                <button onclick="closeMaterialModal()" class="px-5 py-2 bg-brand-600 text-white rounded-xl text-sm font-semibold hover:bg-brand-700 transition">Tutup & Lanjut Latihan</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // QUESTION DATABASE 1: Analisis Kutipan Cerita (20 Soal)
+        const passageQuestions = [
+            {
+                story: "Pak Rahmad memandang hamparan sawahnya yang mengering dan retak-retak. Sudah empat bulan hujan tak kunjung turun. Meskipun demikian, setiap pagi ia tetap mengangkut air dari sumur tua di ujung desa untuk menyiram sebagian bibit padi yang tersisa. Ia percaya bahwa ketekunan tidak akan pernah mengkhianati hasil.",
+                question: "Watak tokoh Pak Rahmad dalam kutipan teks di atas adalah...",
+                options: ["Pantang menyerah dan optimistis", "Penyabar namun pasrah", "Penyendiri dan kaku", "Pemberani dan keras kepala"],
+                answer: 0,
+                explain: "Pak Rahmad menunjukkan sikap pantang menyerah dengan tetap mengangkut air setiap pagi dan tetap optimistis percaya bahwa ketekunan tidak mengkhianati hasil.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Reno berdiri mematung di pinggir lapangan. Sorot matanya tajam menatap Farhan yang sedang melatih tim basket sekolah. Dulu, posisi kapten itu adalah miliknya sebelum kecelakaan naas setahun lalu merenggut impiannya. Namun kini, melihat Farhan mampu merangkul seluruh anggota tim dengan sabar, kebencian di hati Reno perlahan menguap menggantikan rasa hormat.",
+                question: "Peran tokoh Farhan dalam kutipan cerita di atas adalah...",
+                options: ["Tokoh protagonis", "Tokoh antagonis", "Tokoh tritagonis", "Tokoh figuran"],
+                answer: 0,
+                explain: "Farhan berperan sebagai tokoh protagonis yang memiliki sifat baik, sabar, dan mampu merangkul seluruh anggota tim basket.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Ketika pertengkaran antara Hendra dan Aris makin memanas memperebutkan posisi ketua klub, Pak Malik datang mendekat. Dengan tenang, beliau mendengarkan keluhan kedua belah pihak tanpa menyalahkan siapa pun, lalu mengusulkan sistem pemungutan suara yang adil agar tidak ada dendam di antara mereka.",
+                question: "Peran tokoh Pak Malik dalam kutipan cerita di atas adalah...",
+                options: ["Tokoh tritagonis", "Tokoh protagonis", "Tokoh antagonis", "Tokoh tambahan figuran"],
+                answer: 0,
+                explain: "Pak Malik berperan sebagai tritagonis (tokoh penengah) yang bersikap netral dan memberikan solusi adil saat timbul konflik.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Di bawah sinar lampu jalanan yang remang-remang, rintik hujan gerimis menyapu trotoar sepi di depan stasiun tua itu. Jam dinding besar di menara menunjukkan pukul 02.00 dini hari. Maya memeluk erat tas ranselnya sambil menggigil menahan dinginnya angin malam.",
+                question: "Latar tempat, waktu, dan suasana dalam kutipan teks tersebut adalah...",
+                options: [
+                    "Depan stasiun tua, pukul 02.00 dini hari, dan mencekam serta dingin",
+                    "Di dalam menara stasiun, sore hari, dan hangat",
+                    "Di trotoar kota, pagi hari, dan gembira",
+                    "Di halte bus, tengah malam, dan bising"
+                ],
+                answer: 0,
+                explain: "Latar tempat: depan stasiun tua; Latar waktu: pukul 02.00 dini hari; Latar suasana: dingin dan mencekam/sepi.",
+                category: "Latar (Setting)"
+            },
+            {
+                story: "Awalnya kehidupan keluarga Pak Darto begitu rukun dan serba berkecukupan. Namun, sejak usaha konveksinya gulung tikar akibat penipuan, perselisihan sering terjadi di rumah kecil itu. Puncaknya, malam ini anak sulungnya memutuskan pergi meninggalkan rumah setelah bertengkar hebat mengenai biaya sekolah.",
+                question: "Tahapan alur yang tergambar pada kalimat 'Puncaknya, malam ini anak sulungnya memutuskan pergi meninggalkan rumah setelah bertengkar hebat mengenai biaya sekolah' adalah...",
+                options: ["Klimaks", "Orientasi", "Resolusi", "Antiklimaks"],
+                answer: 0,
+                explain: "Kata kunci 'Puncaknya' dan pertengkaran hebat yang membuat anak pergi menandakan tahap Klimaks (puncak ketegangan konflik).",
+                category: "Alur (Plot)"
+            },
+            {
+                story: "Langkah kakiku bergetar saat memasuki ruang ujian nasional itu. Keringat dingin mulai membasahi telapak tanganku. Aku melihat ke sekeliling ruangan; kawan-kawanku tampak khusyuk menatap lembar soal. Dalam hati, aku berdoa semoga persiapan belajar semalam tidak sia-sia.",
+                question: "Sudut pandang pengarang yang digunakan dalam kutipan cerita di atas adalah...",
+                options: ["Sudut pandang orang pertama tokoh utama", "Sudut pandang orang ketiga serbatahu", "Sudut pandang orang pertama tokoh sampingan", "Sudut pandang orang ketiga pengamat"],
+                answer: 0,
+                explain: "Pengarang menggunakan kata ganti 'Aku' dan menceritakan pikiran serta perasaan dirinya sendiri sebagai tokoh utama.",
+                category: "Sudut Pandang"
+            },
+            {
+                story: "Dion melompati pagar rumah tua itu dengan cepat. Ia tidak menyadari bahwa bayangan hitam di balik pohon rambutan sedang mengawasinya. Dion terus berjalan mendekati pintu lapuk yang sedikit terbuka, sementara hatinya terus bertanya-tanya rahasia apa yang disembunyikan pamannya di sana.",
+                question: "Sudut pandang pengarang yang digunakan dalam kutipan teks di atas adalah...",
+                options: ["Sudut pandang orang ketiga", "Sudut pandang orang pertama tokoh utama", "Sudut pandang orang pertama tokoh sampingan", "Sudut pandang campuran"],
+                answer: 0,
+                explain: "Pengarang berada di luar cerita dan menyebut tokoh dengan kata ganti nama ('Dion') serta 'Ia'.",
+                category: "Sudut Pandang"
+            },
+            {
+                story: "Meskipun usianya baru dua belas tahun, Bayu tidak malu berjualan koran di lampu merah setiap sore. Uang hasil jualannya ia tabung untuk membeli buku pelajaran dan membayar biaya sekolah adiknya. Bagi Bayu, kemiskinan bukanlah penghalang untuk meraih cita-cita.",
+                question: "Tema yang paling dominan dalam kutipan cerita di atas adalah...",
+                options: [
+                    "Kegigihan dan semangat berpendidikan di tengah keterbatasan",
+                    "Bahaya mempekerjakan anak di bawah umur",
+                    "Persaingan pedagang koran di lampu merah",
+                    "Suka duka hidup di jalanan kota"
+                ],
+                answer: 0,
+                explain: "Gagasan pokok menekankan pada kegigihan Bayu bekerja demi bisa bersekolah walau hidup dalam kemiskinan.",
+                category: "Tema"
+            },
+            {
+                story: "Sinta menyesal telah menuduh Lani mencuri dompetnya tanpa bukti. Ketika dompet itu ternyata tertinggal di dalam laci mejanya sendiri, Sinta langsung mendatangi Lani dengan kepala tertunduk dan memohon maaf atas kecerobohannya.",
+                question: "Amanat yang terkandung dalam kutipan cerita tersebut adalah...",
+                options: [
+                    "Jangan terburu-buru menuduh orang lain tanpa bukti yang jelas",
+                    "Simpanlah dompet di tempat yang tersembunyi agar aman",
+                    "Jangan pernah meminjamkan dompet kepada teman sekolah",
+                    "Memaafkan kesalahan teman adalah tindakan yang sulit"
+                ],
+                answer: 0,
+                explain: "Penyesalan Sinta akibat asal menuduh mengajarkan pesan moral agar kita tidak sembarangan menuduh orang lain.",
+                category: "Amanat"
+            },
+            {
+                story: "Ibu menyeka air matanya di sudut dapur. Meskipun beras di gentong tinggal satu takar, ia tetap tersenyum saat menyajikan nasi hangat untuk kedua anaknya. Ia memilih menahan lapar agar anak-anaknya dapat makan kenyang sebelum berangkat ke sekolah.",
+                question: "Teknik penokohan yang digunakan pengarang untuk menggambarkan watak tokoh Ibu adalah...",
+                options: [
+                    "Teknik dramatis melalui tindakan dan tingkah laku tokoh",
+                    "Teknik analitis secara langsung oleh pengarang",
+                    "Teknik dramatis melalui tata bahasa/dialog",
+                    "Teknik dramatis melalui penggambaran lingkungan"
+                ],
+                answer: 0,
+                explain: "Watak keibuan dan pengorbanan Ibu ditunjukkan secara langsung lewat tindakan fisiknya (menyeka air mata, menyajikan nasi, menahan lapar).",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Tiba-tiba bayangan kejadian lima tahun lalu melintas di pikiran Arman. Saat itu, gedung tua di hadapannya ini masih megah dan berisikan tawa anak-anak panti. Ia ingat betul bagaimana api melahap habis seluruh bangunan dalam semalam, memisahkan dirinya dari sahabat karibnya.",
+                question: "Jenis alur yang digunakan dalam kutipan cerita di atas adalah...",
+                options: ["Alur mundur", "Alur maju", "Alur lurus Progresif", "Alur ganda"],
+                answer: 0,
+                explain: "Kata kunci 'bayangan kejadian lima tahun lalu melintas' menunjukkan penggunaan kilas balik (Alur Mundur / Flashback).",
+                category: "Alur (Plot)"
+            },
+            {
+                story: "Suara gamelan bertalu-talu mengiringi langkah para penari yang mengenakan pakaian adat Jawa lengkap. Bau kemenyan dan melati menyengat lembut di udara malam balai desa. Warga duduk bersila di atas tikar pandan dengan penuh khidmat menyaksikan pertunjukan tahunan tersebut.",
+                question: "Latar budaya/sosial yang tampak jelas dalam kutipan di atas adalah...",
+                options: [
+                    "Tradisi pertunjukan seni daerah masyarakat Jawa di balai desa",
+                    "Kegiatan keagamaan modern di kawasan perkotaan",
+                    "Pesta pernikahan megah di dalam gedung ber-AC",
+                    "Upacara penyambutan tamu asing di bandara"
+                ],
+                answer: 0,
+                explain: "Latar sosial-budaya sangat kental dengan busana adat Jawa, gamelan, aroma kemenyan/melati, dan duduk bersila di balai desa.",
+                category: "Latar (Setting)"
+            },
+            {
+                story: "Pak Binsar menyilangkan kedua tangannya di dada. 'Jangan pernah panggil aku ayahmu lagi jika kau tetap bersikeras memilih jalur seni itu!' gertaknya dengan suara keras yang memantul di dinding ruang tamu.",
+                question: "Watak tokoh Pak Binsar dalam kutipan di atas adalah...",
+                options: ["Otoriter dan keras", "Penyayang dan bijaksana", "Pemalu dan ragu-ragu", "Penyabar dan pengasih"],
+                answer: 0,
+                explain: "Tindakan menggertak dan menggertak anak dengan nada ancaman menandakan watak yang keras dan otoriter.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Setelah melalui perjuangan panjang dan latihan fisik yang menguras tenaga setiap hari, akhirnya Tari berhasil menyumbangkan medali emas pertama untuk sekolahnya. Seluruh guru dan teman-temannya menyambut kedatangannya dengan sorak-sorai bahagia di halaman sekolah.",
+                question: "Tahapan alur yang ditunjukkan dalam kutipan teks tersebut adalah...",
+                options: ["Resolusi", "Klimaks", "Orientasi", "Komplikasi"],
+                answer: 0,
+                explain: "Teks menunjukkan hasil akhir bahagia (keberhasilan meraih medali emas setelah berjuang) yang merupakan tahapan Resolusi.",
+                category: "Alur (Plot)"
+            },
+            {
+                story: "Riana selalu merasa iri setiap kali melihat Nita membawa barang-barang bermerek ke sekolah. Ia kerap memusuhi Nita tanpa alasan jelas. Namun, saat Riana jatuh dari tangga dan kakinya terkilir, Nita-lah orang pertama yang bergegas merangkul dan membawanya ke ruang UKS tanpa rasa dendam.",
+                question: "Peran tokoh Nita dalam kutipan cerita tersebut adalah...",
+                options: ["Tokoh protagonis", "Tokoh antagonis", "Tokoh tritagonis", "Tokoh figuran"],
+                answer: 0,
+                explain: "Nita adalah tokoh protagonis yang berjiwa pemaaf, baik hati, dan menolong tanpa dendam.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Kami menyusuri jalan setapak di tengah hutan pinus yang mulai diselimuti kabut tebal. Bagas berada di paling depan memegang peta, sementara aku dan Dika mengikutinya dari belakang sambil membawa perlengkapan tenda.",
+                question: "Sudut pandang cerita tersebut menggunakan kata ganti...",
+                options: ["Orang pertama jamak ('kami')", "Orang pertama tunggal ('aku')", "Orang ketiga tunggal ('dia')", "Orang ketiga jamak ('mereka')"],
+                answer: 0,
+                explain: "Pengarang menggunakan kata ganti kelompok pencerita yaitu 'Kami' (orang pertama jamak).",
+                category: "Sudut Pandang"
+            },
+            {
+                story: "Gaya hidup mewah yang diterapkan Gilang membuatnya terlilit utang di mana-mana. Hanya demi dipuji teman-temannya di media sosial, ia rela menghabiskan tabungan masa depannya hingga tak tersisa sama sekali.",
+                question: "Amanat yang terkandung dalam kutipan cerita tersebut adalah...",
+                options: [
+                    "Hiduplah secara bijak dan bersahaja sesuai dengan kemampuan diri",
+                    "Jangan memiliki akun media sosial jika belum bekerja",
+                    "Nabunglah uang hanya di bank agar tidak mudah diambil",
+                    "Carilah teman yang mau meminjamkan uang saat kesulitan"
+                ],
+                answer: 0,
+                explain: "Akibat buruk dari gaya hidup pamer membuat cerita memberi pesan agar bersikap bijak dan bergaya hidup sesuai kemampuan.",
+                category: "Amanat"
+            },
+            {
+                story: "Di tengah gempuran teknologi modern, Mbah Karso tetap setia membuat kerajinan gerabah secara manual menggunakan tanah liat. Ia menolak menggunakan mesin otomatis karena ingin mempertahankan nilai seni dan keaslian warisan leluhurnya.",
+                question: "Tema yang diangkat dalam kutipan teks cerita pendek di atas adalah...",
+                options: [
+                    "Melestarikan tradisi dan kerajinan lokal di tengah arus modernisasi",
+                    "Kemajuan teknologi mesin otomatis di era digital",
+                    "Keuntungan finansial dari penjualan gerabah tanah liat",
+                    "Persaingan antar pengrajin di desa penari"
+                ],
+                answer: 0,
+                explain: "Tema berfokus pada keteguhan Mbah Karso menjaga kelestarian kerajinan tradisional gerabah lokal.",
+                category: "Tema"
+            },
+            {
+                story: "Lampu kristal megah menggantung di langit-langit aula pesta. Suara denting gelas kaca bertubrukan dipadu dengan gelak tawa para tamu bergaun indah. Namun di sudut ruangan, Danu berdiri canggung memegangi kemeja lusuhnya yang tidak cocok dengan suasana di tempat itu.",
+                question: "Latar suasana yang kontras (berlawanan) dalam kutipan di atas adalah...",
+                options: [
+                    "Kemewahan dan keceriaan para tamu berbanding terbalik dengan rasa canggung dan keminderan Danu",
+                    "Kegelapan malam berbanding dengan teriknya sinar matahari pesta",
+                    "Kebisingan musik panggung berbanding dengan kesepian di luar aula",
+                    "Kemarahan tuan rumah berbanding dengan kegembiraan para undangan"
+                ],
+                answer: 0,
+                explain: "Kontras terlihat dari pesta mewah yang riang gembira berbanding terbalik dengan kecanggungan Danu dengan kemeja lusuhnya.",
+                category: "Latar (Setting)"
+            },
+            {
+                story: "Malam makin larut ketika pintu rumah Pak Tua diketuk pelan. Seorang pemuda asing berdiri menggigil di luar meminta perlindungan dari kejaran badai. Tanpa ragu dan tanpa menanyakan asal-usulnya, Pak Tua segera membukakan pintu lebar-lebar dan membagikan sup hangatnya.",
+                question: "Nilai kehidupan yang menonjol dari tindakan tokoh Pak Tua adalah...",
+                options: [
+                    "Nilai sosial (kemanusiaan dan kepedulian tanpa membeda-bedakan)",
+                    "Nilai estetika (keindahan seni menyajikan sup)",
+                    "Nilai ekonomi (menjual sup saat badai malam)",
+                    "Nilai politik (keamanan desa dari orang asing)"
+                ],
+                answer: 0,
+                explain: "Tindakan Pak Tua menolong pemuda asing yang kesusahan merupakan wujud nilai sosial kemanusiaan.",
+                category: "Amanat"
+            }
+        ];
+
+        // QUESTION DATABASE 2: Konsep Dasar Unsur Intrinsik (20 Soal)
+        const conceptQuestions = [
+            {
+                story: null,
+                question: "Gagasan pokok atau ide dasar yang menjadi landasan penyusunan seluruh cerita disebut...",
+                options: ["Tema", "Judul", "Amanat", "Latar"],
+                answer: 0,
+                explain: "Tema adalah gagasan utama/ide dasar pembangun seluruh isi cerita pendek.",
+                category: "Tema"
+            },
+            {
+                story: "Pak Usman selalu menyisihkan sebagian pendapatannya untuk membantu para tetangga yang kekurangan, tanpa pernah mengharapkan pujian.",
+                question: "Watak tokoh Pak Usman dalam kutipan di atas adalah...",
+                options: ["Dermawan dan rendah hati", "Sombong dan pamer", "Penakut dan ragu", "Hemat dan kikir"],
+                answer: 0,
+                explain: "Membantu tetangga kekurangan tanpa mengharapkan pujian mencerminkan watak dermawan dan rendah hati.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: null,
+                question: "Tokoh penengah yang bertindak netral dan memberikan solusi saat terjadi konflik disebut...",
+                options: ["Tritagonis", "Protagonis", "Antagonis", "Figuran"],
+                answer: 0,
+                explain: "Tritagonis adalah tokoh penengah yang netral antara protagonis dan antagonis.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Lampu jalan memancar redup. Angin malam berhembus dingin menusuk tulang, diiringi suara dedaunan kering yang bergesekan di gang sepi itu.",
+                question: "Latar suasana yang tergambar dalam kutipan tersebut adalah...",
+                options: ["Mencekam dan sunyi", "Ramah dan ceria", "Panas dan bising", "Haru dan gembira"],
+                answer: 0,
+                explain: "Angin dingin, gang sepi, dan lampu redup membangun latar suasana mencekam dan sunyi.",
+                category: "Latar (Setting)"
+            },
+            {
+                story: null,
+                question: "Pengarang menjelaskan watak tokoh secara langsung melalui narasi tanpa melalui dialog atau tindakan tokoh lain. Teknik ini disebut...",
+                options: ["Teknik analitis", "Teknik dramatis", "Teknik komparatif", "Teknik ekspositoris"],
+                answer: 0,
+                explain: "Teknik analitis adalah penyampaian watak secara langsung oleh narator pengarang.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Aku menatap wajah ibu yang makin renta. Dalam hati, aku berjanji tidak akan pernah mengecewakannya lagi.",
+                question: "Sudut pandang yang digunakan pengarang dalam kutipan di atas adalah...",
+                options: ["Sudut pandang orang pertama", "Sudut pandang orang ketiga", "Sudut pandang campuran", "Sudut pandang serbatahu"],
+                answer: 0,
+                explain: "Menggunakan kata 'Aku' yang terlibat sebagai pelaku utama cerita.",
+                category: "Sudut Pandang"
+            },
+            {
+                story: null,
+                question: "Tahapan alur ketika masalah dalam cerita mencapai puncak ketegangan terhebat disebut...",
+                options: ["Klimaks", "Orientasi", "Resolusi", "Antiklimaks"],
+                answer: 0,
+                explain: "Klimaks adalah titik tertinggi konflik atau ketegangan dalam alur cerita.",
+                category: "Alur (Plot)"
+            },
+            {
+                story: null,
+                question: "Alur yang menceritakan peristiwa dari masa kini lalu kembali mengungkapkan masa lalu tokoh disebut...",
+                options: ["Alur mundur", "Alur maju", "Alur lurus", "Alur konvensional"],
+                answer: 0,
+                explain: "Alur mundur (flashback/regresif) bergerak dari masa kini kembali ke masa lalu.",
+                category: "Alur (Plot)"
+            },
+            {
+                story: "Pena itu menari-nari di atas kertas putih, mengukir kisah yang tak pernah usai.",
+                question: "Gaya bahasa (majas) yang terdapat dalam kalimat tersebut adalah...",
+                options: ["Personifikasi", "Hiperbola", "Metafora", "Simile"],
+                answer: 0,
+                explain: "Personifikasi menganggap benda mati (pena) dapat melakukan aksi manusia (menari-nari).",
+                category: "Gaya Bahasa"
+            },
+            {
+                story: null,
+                question: "Pesan moral yang tidak tertulis secara eksplisit dalam cerita melainkan harus disimpulkan sendiri oleh pembaca disebut amanat...",
+                options: ["Tersirat", "Tersurat", "Analitis", "Konstruktif"],
+                answer: 0,
+                explain: "Amanat tersirat memerlukan pemahaman dan penyimpulan pembaca dari jalinan cerita.",
+                category: "Amanat"
+            },
+            {
+                story: "Dino merasa bersalah karena telah membohongi ibunya. Sepanjang malam ia tidak bisa tidur nyenyak, dibayangi rasa penyesalan yang mendalam.",
+                question: "Latar sosial atau psikologis yang menonjol pada tokoh Dino adalah...",
+                options: ["Perasaan gelisah dan menyesal", "Rasa bahagia dan puas", "Kepanikan akibat dikejar musuh", "Kebanggaan atas prestasi"],
+                answer: 0,
+                explain: "Kondisi psikologis Dino dipenuhi gelisah dan rasa penyesalan mendalam.",
+                category: "Latar (Setting)"
+            },
+            {
+                story: null,
+                question: "Bagian cerita yang menunjukkan jalan keluar atau penyelesaian dari konflik yang dialami para tokoh dinamakan...",
+                options: ["Resolusi", "Klimaks", "Komplikasi", "Orientasi"],
+                answer: 0,
+                explain: "Resolusi berisi peleraian/penyelesaian masalah yang dihadapi para tokoh.",
+                category: "Alur (Plot)"
+            },
+            {
+                story: "Budi memandang sahabatnya yang terbaring lemah. Ia tahu bahwa Rian telah berjuang sekuat tenaga melawan penyakitnya.",
+                question: "Sudut pandang cerita tersebut adalah...",
+                options: ["Orang ketiga", "Orang pertama", "Orang kedua", "Campuran aku-kamu"],
+                answer: 0,
+                explain: "Menggunakan kata ganti nama tokoh ('Budi', 'Rian') dan kata ganti 'Ia' (Orang Ketiga).",
+                category: "Sudut Pandang"
+            },
+            {
+                story: null,
+                question: "Manakah di antara pernyataan berikut yang paling tepat mengenai perbedaan antara 'Tema' dan 'Judul'?",
+                options: [
+                    "Tema adalah gagasan dasar cerita, sedangkan judul adalah nama karangan.",
+                    "Tema selalu sama dengan judul cerita.",
+                    "Judul lebih luas jangkauannya daripada tema.",
+                    "Tema ditulis di awal halaman, sedangkan judul di akhir cerita."
+                ],
+                answer: 0,
+                explain: "Tema bersifat abstrak sebagai ide pokok, sedangkan judul adalah nama spesifik karangan.",
+                category: "Tema"
+            },
+            {
+                story: "Jangan pernah menilai seseorang hanya dari penampilannya luar saja, karena ketulusan hati sering tersembunyi di balik kesederhanaan.",
+                question: "Unsur intrinsik yang paling dominan disampaikan pada kutipan tersebut adalah...",
+                options: ["Amanat", "Latar tempat", "Alur mundur", "Sudut pandang orang pertama"],
+                answer: 0,
+                explain: "Kutipan tersebut berisikan pesan moral atau nasehat (Amanat).",
+                category: "Amanat"
+            },
+            {
+                story: null,
+                question: "Penokohan yang digambarkan lewat dialog antar-tokoh, tindakan fisik, serta tanggapan tokoh lain disebut teknik...",
+                options: ["Dramatis", "Analitis", "Eksplisit", "Monolog"],
+                answer: 0,
+                explain: "Teknik dramatis tidak menyebutkan watak secara langsung, melainkan lewat perilaku dan dialog.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: "Di bawah pohon beringin tua di ujung desa itu, kami sering berkumpul setiap sore menjelang matahari terbenam.",
+                question: "Latar tempat dan latar waktu yang terdapat pada kutipan tersebut adalah...",
+                options: ["Di bawah pohon beringin tua dan sore hari", "Di balai desa dan pagi hari", "Di tengah hutan dan malam hari", "Di pinggir sungai dan siang hari"],
+                answer: 0,
+                explain: "Latar tempat: 'bawah pohon beringin tua'; Latar waktu: 'sore menjelang matahari terbenam'.",
+                category: "Latar (Setting)"
+            },
+            {
+                story: null,
+                question: "Karakter yang menjadi penentang tokoh utama dan biasanya memicu munculnya konflik dalam cerita dinamakan...",
+                options: ["Tokoh antagonis", "Tokoh protagonis", "Tokoh tritagonis", "Tokoh pembantu"],
+                answer: 0,
+                explain: "Antagonis adalah penentang tokoh utama yang memicu timbulnya konflik.",
+                category: "Tokoh & Penokohan"
+            },
+            {
+                story: null,
+                question: "Kombinasi penggunaan alur maju dan alur mundur dalam satu rangkaian cerita dinamakan...",
+                options: ["Alur campuran", "Alur ganda", "Alur berputar", "Alur kilas balik"],
+                answer: 0,
+                explain: "Alur campuran memadukan alur maju (progresif) dan alur mundur (regresif).",
+                category: "Alur (Plot)"
+            },
+            {
+                story: "Jeritan hatinya terdengar membelah angkasa saat mendengar berita duka itu.",
+                question: "Majas yang digunakan dalam kalimat tersebut adalah...",
+                options: ["Hiperbola", "Personifikasi", "Litotes", "Sinekdoke"],
+                answer: 0,
+                explain: "Hiperbola menyatakan sesuatu secara berlebihan ('membelah angkasa').",
+                category: "Gaya Bahasa"
+            }
+        ];
+
+        let activeQuestions = [];
+        let currentQuestionIdx = 0;
+        let score = 0;
+        let userAnswers = [];
+        let quizMode = 'analisis'; // 'analisis' or 'konsep'
+
+        // SCREEN ROUTING
+        function showScreen(screenId) {
+            document.getElementById('screen-home').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-result').classList.add('hidden');
+
+            document.getElementById(`screen-${screenId}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // START QUIZ
+        function startQuiz(mode) {
+            quizMode = mode;
+            if (mode === 'analisis') {
+                activeQuestions = JSON.parse(JSON.stringify(passageQuestions));
+                document.getElementById('quiz-badge').innerText = "Mode Analisis Kutipan";
+                document.getElementById('quiz-badge').className = "text-xs font-bold px-2.5 py-1 rounded-md bg-brand-50 text-brand-600 uppercase tracking-wide";
+            } else {
+                activeQuestions = JSON.parse(JSON.stringify(conceptQuestions));
+                document.getElementById('quiz-badge').innerText = "Mode Konsep Dasar";
+                document.getElementById('quiz-badge').className = "text-xs font-bold px-2.5 py-1 rounded-md bg-purple-50 text-purple-600 uppercase tracking-wide";
+            }
+
+            currentQuestionIdx = 0;
+            score = 0;
+            userAnswers = new Array(activeQuestions.length).fill(null);
+
+            document.getElementById('current-score').innerText = '0';
+            showScreen('quiz');
+            renderQuestion();
+        }
+
+        // RENDER QUESTION
+        function renderQuestion() {
+            const q = activeQuestions[currentQuestionIdx];
+            const total = activeQuestions.length;
+
+            // Update Progress Header
+            document.getElementById('quiz-title-header').innerText = `Soal ${currentQuestionIdx + 1} dari ${total}`;
+            const progressPercent = ((currentQuestionIdx) / total) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+
+            // Category tag
+            document.getElementById('question-category-tag').innerText = `Unsur: ${q.category || 'Intrinsik'}`;
+
+            // Story passage
+            const storyBox = document.getElementById('story-container');
+            if (q.story) {
+                storyBox.classList.remove('hidden');
+                document.getElementById('story-passage').innerText = `"${q.story}"`;
+            } else {
+                storyBox.classList.add('hidden');
+            }
+
+            // Question Text
+            document.getElementById('question-text').innerText = `${currentQuestionIdx + 1}. ${q.question}`;
+
+            // Explanation box hidden initially
+            const expBox = document.getElementById('explanation-box');
+            expBox.classList.add('hidden');
+
+            // Render Option Buttons
+            const optionsList = document.getElementById('options-list');
+            optionsList.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition duration-150 flex items-start space-x-3 text-sm sm:text-base font-medium text-slate-700 option-btn-${idx}`;
+                btn.onclick = () => handleSelectOption(idx);
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">${letters[idx]}</span>
+                    <span>${opt}</span>
+                `;
+                optionsList.appendChild(btn);
+            });
+
+            // Disable Next Button until answered
+            const nextBtn = document.getElementById('btn-next-question');
+            nextBtn.disabled = true;
+            nextBtn.innerHTML = currentQuestionIdx === total - 1 ? '<span>Selesai Kuis</span>' : '<span>Lanjut Soal</span><svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>';
+        }
+
+        // HANDLE USER CHOICE
+        function handleSelectOption(selectedIdx) {
+            const q = activeQuestions[currentQuestionIdx];
+            if (userAnswers[currentQuestionIdx] !== null) return; // Already answered
+
+            const isCorrect = selectedIdx === q.answer;
+            userAnswers[currentQuestionIdx] = {
+                selected: selectedIdx,
+                isCorrect: isCorrect
+            };
+
+            if (isCorrect) {
+                score += 5; // 20 questions * 5 = 100 max score
+                document.getElementById('current-score').innerText = score;
+            }
+
+            // Highlight options
+            const optionsList = document.getElementById('options-list');
+            const btns = optionsList.children;
+
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].disabled = true;
+                btns[i].classList.remove('hover:border-brand-500', 'hover:bg-brand-50/50');
+
+                if (i === q.answer) {
+                    btns[i].className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold flex items-start space-x-3 text-sm sm:text-base";
+                    btns[i].querySelector('span').className = "w-6 h-6 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5";
+                } else if (i === selectedIdx && !isCorrect) {
+                    btns[i].className = "w-full text-left p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-medium flex items-start space-x-3 text-sm sm:text-base";
+                    btns[i].querySelector('span').className = "w-6 h-6 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5";
+                } else {
+                    btns[i].classList.add('opacity-50');
+                }
+            }
+
+            // Show Explanation
+            const expBox = document.getElementById('explanation-box');
+            expBox.classList.remove('hidden');
+            if (isCorrect) {
+                expBox.className = "rounded-xl p-4 sm:p-5 border border-emerald-200 bg-emerald-50/70 text-sm leading-relaxed text-emerald-900";
+                document.getElementById('explanation-title').className = "flex items-center space-x-2 font-bold mb-1 text-emerald-700";
+                document.getElementById('explanation-title').querySelector('span').innerText = "Jawaban Tepat!";
+            } else {
+                expBox.className = "rounded-xl p-4 sm:p-5 border border-amber-200 bg-amber-50/70 text-sm leading-relaxed text-amber-900";
+                document.getElementById('explanation-title').className = "flex items-center space-x-2 font-bold mb-1 text-amber-800";
+                document.getElementById('explanation-title').querySelector('span').innerText = "Pembahasan Jawaban:";
+            }
+            document.getElementById('explanation-text').innerText = q.explain;
+
+            // Enable Next
+            document.getElementById('btn-next-question').disabled = false;
+        }
+
+        // NEXT QUESTION OR FINISH
+        function nextQuestion() {
+            if (currentQuestionIdx < activeQuestions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        // FINISH QUIZ & SHOW DASHBOARD
+        function finishQuiz() {
+            const total = activeQuestions.length;
+            const correctCount = userAnswers.filter(a => a && a.isCorrect).length;
+            const incorrectCount = total - correctCount;
+            const accuracy = Math.round((correctCount / total) * 100);
+
+            document.getElementById('final-score-display').innerText = score;
+            document.getElementById('stat-correct').innerText = `${correctCount} Soal`;
+            document.getElementById('stat-incorrect').innerText = `${incorrectCount} Soal`;
+            document.getElementById('stat-accuracy').innerText = `${accuracy}%`;
+
+            let msg = "";
+            if (score === 100) msg = "Sempurna! Kamu telah menguasai seluruh unsur intrinsik cerita dengan sangat baik.";
+            else if (score >= 80) msg = "Luar biasa! Pemahaman analisis cerpen kamu sudah sangat tinggi.";
+            else if (score >= 60) msg = "Hasil yang baik! Cek pembahasan soal yang keliru untuk penyempurnaan.";
+            else msg = "Tetap semangat! Pelajari rangkuman materi dan ulangi latihan soal.";
+
+            document.getElementById('result-badge-text').innerText = msg;
+            document.getElementById('review-container').classList.add('hidden');
+
+            showScreen('result');
+        }
+
+        // TOGGLE REVIEW ALL ANSWERS
+        function toggleReviewMode() {
+            const container = document.getElementById('review-container');
+            if (!container.classList.contains('hidden')) {
+                container.classList.add('hidden');
+                return;
+            }
+
+            container.classList.remove('hidden');
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+
+            activeQuestions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = uAns ? uAns.isCorrect : false;
+
+                const card = document.createElement('div');
+                card.className = `p-5 rounded-2xl border ${isCorrect ? 'border-emerald-200 bg-emerald-50/20' : 'border-rose-200 bg-rose-50/20'} space-y-3`;
+
+                let storyHTML = q.story ? `<div class="p-3 bg-slate-100 rounded-lg text-xs italic text-slate-700 mb-2">"${q.story}"</div>` : '';
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            Soal #${idx + 1} • ${isCorrect ? 'BENAR' : 'SALAH'}
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">${q.category || 'Intrinsik'}</span>
+                    </div>
+                    ${storyHTML}
+                    <h5 class="font-bold text-slate-900 text-sm sm:text-base">${q.question}</h5>
+                    <div class="text-xs space-y-1">
+                        <p class="text-slate-600"><strong>Jawaban Kamu:</strong> <span class="${isCorrect ? 'text-emerald-700 font-bold' : 'text-rose-600 font-bold'}">${uAns && uAns.selected !== null ? letters[uAns.selected] + '. ' + q.options[uAns.selected] : 'Tidak dijawab'}</span></p>
+                        ${!isCorrect ? `<p class="text-emerald-700"><strong>Jawaban Benar:</strong> <span class="font-bold">${letters[q.answer]}. ${q.options[q.answer]}</span></p>` : ''}
+                    </div>
+                    <div class="p-3 bg-white rounded-xl border border-slate-100 text-xs text-slate-600">
+                        <strong class="text-slate-800">Pembahasan:</strong> ${q.explain}
+                    </div>
+                `;
+                reviewList.appendChild(card);
+            });
+
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // CONFIRM EXIT QUIZ
+        function confirmExitQuiz() {
+            if (confirm("Apakah kamu yakin ingin keluar dari kuis? Kemajuan kuis ini akan hilang.")) {
+                showScreen('home');
+            }
+        }
+
+        // MODAL HANDLERS
+        function openMaterialModal() {
+            document.getElementById('modal-material').classList.remove('hidden');
+        }
+
+        function closeMaterialModal() {
+            document.getElementById('modal-material').classList.add('hidden');
+        }
+
+        // Initialize Home Screen on Load
+        window.onload = function() {
+            showScreen('home');
+        };
+    </script>
+</body>
+</html>
